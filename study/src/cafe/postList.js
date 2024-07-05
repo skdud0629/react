@@ -1,9 +1,8 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 import { List } from 'react-virtualized';
-import { AppContext } from '../App.js';
-import { PostContainer, SubTitle, SubTitleContainer, PostListHeader, ListItem, ListText } from '../style/postListStyle.js';
+import { AppContext } from '../cafe/App.js';
+import { PostContainer, SubTitle, SubTitleContainer, PostListHeader, ListItem, ListText,ItemText } from '../style/postListStyle.js';
 import { Button } from '../style/style.js';
 
 const PostList = () => {

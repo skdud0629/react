@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, createContext } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import './App.css';
+import '../style/App.css';
 import PostList from './postList.js';
 import Content from './content.js';
 import Edit from './edit.js';

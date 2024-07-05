@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import Header from './cafe/header.js';
 import App from './cafe/App.js';
-import Edit from './cafe/edit.js';
 
 import reportWebVitals from './reportWebVitals';
 

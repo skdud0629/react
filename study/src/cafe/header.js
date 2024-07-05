@@ -1,5 +1,5 @@
 import { CenteredHeaderContent, HeaderContainer, Title, HeaderContent, Logo } from '../style/headerStyle.js';
-import logo from './assets/naver_logo.svg';
+import logo from '../assets/naver_logo.svg';
 import styled from 'styled-components';
 
 
