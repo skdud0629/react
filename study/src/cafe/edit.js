@@ -12,9 +12,27 @@ const Edit = () => {
   const { data, writePost, modifyPost } = useContext(AppContext);
   const post = data.find(item => item.id === Number(id));
   const editorRef = useRef();
-  const [title, setTitle] = useState(post ? post.title : '');
-  const [content, setContent] = useState(post ? post.content : '');
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
   const randomAuthor = `익명${Math.floor(Math.random() * 1000)}`;
+
+  useEffect(() => {
+    if (post) {
+      setTitle(post.title);
+      setContent(post.content);
+    } else {
+      fetchData();
+    }
+  }, [post]);
+
+  const fetchData = () => {
+    const storedData = JSON.parse(localStorage.getItem('postsData'));
+    const storedPost = storedData.find(item => item.id === Number(id));
+    if (storedPost) {
+      setTitle(storedPost.title);
+      setContent(storedPost.content);
+    }
+  };
 
   useEffect(() => {
     const handleBeforeUnload = (event) => {
@@ -31,21 +49,12 @@ const Edit = () => {
 
     window.addEventListener('beforeunload', handleBeforeUnload);
     window.addEventListener('unload', handleUnload);
-    fetchData();
+
     return () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
       window.removeEventListener('unload', handleUnload);
     };
   }, [title, content]);
-
-  const fetchData = () => {
-    const storedData = JSON.parse(localStorage.getItem('postsData'));
-    const storedPost = storedData.find(item => item.id === Number(id));
-    if (storedPost) {
-      setTitle(storedPost.title);
-      setContent(storedPost.content);
-    }
-  };
 
   const handleSave = () => {
     const content = editorRef.current.getInstance().getMarkdown();
@@ -59,6 +68,11 @@ const Edit = () => {
       writePost(title, content, randomAuthor, 0);
     }
     navigate('/');
+  };
+
+  const handleContentChange = () => {
+    const content = editorRef.current.getInstance().getMarkdown();
+    setContent(content);
   };
 
   const subTitleText = "카페 글쓰기";
@@ -82,6 +96,7 @@ const Edit = () => {
           height="600px"
           initialEditType="wysiwyg"
           useCommandShortcut={false}
+          onChange={handleContentChange}
         />
       </ContentContainer>
     </div>

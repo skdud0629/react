@@ -12,7 +12,7 @@ const PostList = () => {
     navigate(`/content/${id}`);
   };
   const writePostClick = () => {
-    navigate(`/edit/${data.length + 1}`);
+    navigate(`/edit/${data.length + 2}`);
   }
 
   const rowRenderer = ({ index, key, style }) => {
